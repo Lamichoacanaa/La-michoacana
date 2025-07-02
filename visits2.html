@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador de Visitas Global</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-detabase-compat.js"></script>
+
+        <a href="D:\Codigos Mauro\La Michuacana... Es Natural.html">INICIO</a>
+            <a href="D:\Codigos Mauro\Productos.html">PRODUCTOS</a>
+            <a href="D:\Codigos Mauro\Acerca de.html">ACERCA DE</a>
+            <a href="D:\Codigos Mauro\contacto.html">CONTACTO</a>
+            <a href="D:\visits2.html">VISTAS</a>
+            <a href="D:\Codigos Mauro\Historia.html">HISTORIA</a>
+ 
+  
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    /* Estilo del contador fijo */
+    #contador-fixed {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Contador flotante -->
+  <div id="contador-fixed">
+    👁️ Visitas: <span id="contador">...</span>
+  </div>
+
+  <script>
+    // 🔧 Configuración Firebase (reemplaza con la tuya)
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_DOMINIO.firebaseapp.com",
+      projectId: "TU_PROJECT_ID",
+      databaseURL: "https://TU_PROJECT_ID.firebaseio.com",
+      storageBucket: "TU_PROJECT_ID.appspot.com",
+      messagingSenderId: "XXXXXXXXX",
+      appId: "APP_ID"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const ref = db.ref("contadorVisitas");
+
+    // Aumentar el contador cada vez que alguien entra
+    ref.transaction((valorActual) => {
+      return (valorActual || 0) + 1;
+    });
+
+    // Mostrar el contador en tiempo real
+    ref.on("value", (snapshot) => {
+      document.getElementById("contador").textContent = snapshot.val();
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador de Visitas</title>
+  <script>
+    window.onload = function () {
+      // Obtener el número de visitas del localStorage
+      let visitas = localStorage.getItem("contadorVisitas");
+
+      // Si no existe, lo inicializamos en 1
+      if (!visitas) {
+        visitas = 1;
+      } else {
+        visitas = parseInt(visitas) + 1;
+      }
+
+      // Guardar el nuevo valor
+      localStorage.setItem("contadorVisitas", visitas);
+
+      // Mostrar el valor en la página
+      document.getElementById("contador").textContent = visitas;
+    };
+  </script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
+</body>
+</html>
+          

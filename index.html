@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helados La Michoacana</title>
+    <style>
+
+        body
+        {
+            font-family: Arial, sans-serif;
+            background-color: rgb(252, 85, 252);
+            color: rgb(16, 255, 183);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+              
+            font-family: Arial, sans-serif;
+            background-image:url(D:\IMagenes\imagen.jpg);
+            background-size:cover;
+            background-attachment:fixed;
+                                            
+        }
+      .header img {
+            width: 50px;
+            vertical-align: middle;        }
+            header {
+            background-color: #161616;
+            color: rgb(230, 39, 255);
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .gallery-item {
+            background-color: rgb(212, 255, 23);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgb(65, 218, 238);
+
+
+        }
+        nav a {
+            color: rgb(252, 248, 248);
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .product {
+            background: rgb(230, 39, 255);
+            color: rgb(20, 19, );
+            margin: 110px auto;
+            padding: 60px;
+            width: 200px;
+            border-radius: 50px;
+        }
+
+        .product img {
+            width: 100px;
+            display: block;
+            margin: auto;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="E:\IMagenes\Logo.jpg.png" alt="Logo">
+        <h1>Helados La Michoacana</h1>
+    </div>
+<nav
+     class="menu">
+         <a href="E:\Codigos Mauro\La Michuacana... Es Natural.html">Inicio</a>
+        <a href="E:\Codigos Mauro\Productos.html">Productos</a>
+        <a href="E:\Codigos Mauro\Acerca de.html">Acerca de</a>
+        <a href="E:\Codigos Mauro\contacto.html">Contacto</a>
+        <a href="E:\Codigos Mauro\Historia.html">Historia</a>
+</nav>
+    
+<nav
+     class="menu">
+     <div class="product">
+
+        <h1>PALETAS</h1>
+        <img src="E:\IMagenes\Paletas.jpg" alt="Paletas">
+       
+</div>
+    <div class="product">
+        <h1>HELADOS</h1>
+        <img src="E:\IMagenes\Helados.jpg" alt="Helados">
+        
+</div>
+    <div class="product">
+        <h1>AGUAS FRESCAS</h1>
+        <img src="E:\IMagenes\Aguas.jpg" alt="Aguas Frescas">
+        
+</div>
+    <div class="product">
+        <h1>OTROS PRODUCTOS</h1>
+        <img src="E:\IMagenes\Otros.jpg" alt="Otros Productos">
+     
+    </div>
+</nav>
+
+<div class="contact" id="contacto">
+    <h2>Contácto</h2>
+<br>
+    
+    <div class="footer">
+        <p>CONTACTO: 55 2250 1920</p>
+        <p>FACEBOOK: La Michoacana | INSTAGRAM: @la_michoacana</p>
+              <p>UBICACION: Av.Jesus del Monte #234</p>
+    </div>
+
+
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador de Visitas Global</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-detabase-compat.js"></script>
+ 
+  
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    /* Estilo del contador fijo */
+    #contador-fixed {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(68, 80, 250, 0.75);
+      color: rgb(0, 0, 0);
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Contador flotante -->
+  <div id="contador-fixed">
+    👁️ Visitas: <span id="contador">...</span>
+  </div>
+
+  <script>
+    // 🔧 Configuración Firebase (reemplaza con la tuya)
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_DOMINIO.firebaseapp.com",
+      projectId: "TU_PROJECT_ID",
+      databaseURL: "https://TU_PROJECT_ID.firebaseio.com",
+      storageBucket: "TU_PROJECT_ID.appspot.com",
+      messagingSenderId: "XXXXXXXXX",
+      appId: "APP_ID"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const ref = db.ref("contadorVisitas");
+
+    // Aumentar el contador cada vez que alguien entra
+    ref.transaction((valorActual) => {
+      return (valorActual || 0) + 1;
+    });
+
+    // Mostrar el contador en tiempo real
+    ref.on("value", (snapshot) => {
+      document.getElementById("contador").textContent = snapshot.val();
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador de Visitas</title>
+  <script>
+    window.onload = function () {
+      // Obtener el número de visitas del localStorage
+      let visitas = localStorage.getItem("contadorVisitas");
+
+      // Si no existe, lo inicializamos en 1
+      if (!visitas) {
+        visitas = 1;
+      } else {
+        visitas = parseInt(visitas) + 1;
+      }
+
+      // Guardar el nuevo valor
+      localStorage.setItem("contadorVisitas", visitas);
+
+      // Mostrar el valor en la página
+      document.getElementById("contador").textContent = visitas;
+    };
+  </script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
+</body>
+</html>
+          
+<br>
+</body>
+</html>
